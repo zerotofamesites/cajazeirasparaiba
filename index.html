@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Gerenciamento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(10, 10, 10, 0.7) 100%),
+                url('https://i0.wp.com/blog.portaleducacao.com.br/wp-content/uploads/2022/02/365-O-que-e%CC%81-tecnologia_.jpg?fit=1200%2C675&ssl=1');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card-hover {
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        .card-hover::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700, #ffed4e);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .card-hover:hover::before {
+            opacity: 1;
+            animation: neonPulse 2s infinite;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        @keyframes neonPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
+    <div class="bg-black rounded-3xl shadow-2xl p-6 w-full max-w-sm border-2 border-yellow-500" style="box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-yellow-400 mb-2">Gerenciamento</h1>
+            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto rounded-full" style="box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);"></div>
+            <p class="text-yellow-200 mt-2 text-sm">Painel Central de Controle</p>
+        </div>
+
+        <!-- Buttons Grid -->
+        <div class="flex flex-col gap-3">
+            <!-- Lista de Quartos -->
+            <a href="https://zerotofamesites.github.io/lavanderia-/" target="_blank" rel="noopener noreferrer" 
+               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold">Lista de Quartos</span>
+                </div>
+                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <!-- Lista de Espera -->
+            <a href="https://zerotofamesites.github.io/espera/" target="_blank" rel="noopener noreferrer" 
+               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold">Lista de Espera</span>
+                </div>
+                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <!-- Informações -->
+            <a href="https://zerotofamesites.github.io/hotelconfort/" target="_blank" rel="noopener noreferrer" 
+               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold">Informações</span>
+                </div>
+                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <!-- Cardápio -->
+            <a href="https://zerotofamesites.github.io/cardapioinv-/" target="_blank" rel="noopener noreferrer" 
+               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold">Cardápio</span>
+                </div>
+                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+
+            <!-- Cardápio Antigo -->
+            <a href="https://cardapiorestauranteinvo.my.canva.site/dagjjpgif8w#menu" target="_blank" rel="noopener noreferrer" 
+               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
+                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-base font-semibold">Cardápio Antigo</span>
+                </div>
+                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-6">
+            <p class="text-yellow-600 text-xs">Sistema de Gerenciamento Hoteleiro</p>
+        </div>
+    </div>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98319aacb201f61b',t:'MTc1ODU0MjAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
