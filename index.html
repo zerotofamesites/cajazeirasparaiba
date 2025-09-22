@@ -157,14 +157,6 @@
                         Rotas Inteligentes
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                     </a>
-                    <a href="#eventos" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
-                        Eventos
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#contato" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
-                        Contato
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
                 </nav>
                 <button class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -176,12 +168,12 @@
     </header>
 
     <!-- Hero Section Moderno -->
-    <section class="relative overflow-hidden min-h-screen flex items-center tech-grid">
-        <!-- Carrossel de Imagens de Fundo -->
-        <div id="heroCarousel" class="absolute inset-0 w-full h-full">
-            <div class="carousel-slide active absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLs-AfL-EMjAZwaLUTN8hJCqC3SRD0JQngIPtmSF9jEZMMvbh-o1naIOQjpY7MlJyBnzOtcmIDXSDoqETo_hR8P2wYgst3dst65HuPnBb8hkUPtFh5TZ9mcpZ5Vp859f0M3w5s=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000 opacity-0" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noda1DmqndHXZpC6PaSDgNHtYt4WA3Yk1ySMOncQDKI_2M4zoXmsRMBl0IvlksEjtRGEmcXR3bQlYE-9MT_Aac6F51MMLbiqIuuaHrfzpvYWCxO0GE4ovl75TNL1JLOjsQ63eU=s680-w680-h510-rw');"></div>
-        </div>
+    <section class="relative overflow-hidden min-h-screen flex items-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full bg-cover bg-center" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.45)), url('https://cnbbne2.org.br/wp-content/uploads/2024/02/198137861_. _. 705_n-e. .jpg');"></div>
+        
+        <!-- Tech Grid Overlay -->
+        <div class="absolute inset-0 tech-grid opacity-20"></div>
 
         <!-- Conteúdo do Hero -->
         <div class="relative z-10 text-white w-full">
@@ -251,25 +243,7 @@
             </div>
         </div>
 
-        <!-- Indicadores Modernos -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <div class="flex space-x-3">
-                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(0)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-all duration-300 hover:scale-125" onclick="goToSlide(1)"></button>
-            </div>
-        </div>
 
-        <!-- Controles Modernos -->
-        <button onclick="previousSlide()" class="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-white hover:bg-opacity-20 text-white p-4 rounded-2xl transition-all duration-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-        </button>
-        <button onclick="nextSlide()" class="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-white hover:bg-opacity-20 text-white p-4 rounded-2xl transition-all duration-300">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-            </svg>
-        </button>
     </section>
 
     <!-- Pontos Turísticos Modernos -->
@@ -460,8 +434,8 @@
                 descricao: "O local oferece uma vista panorâmica deslumbrante da cidade e das paisagens do Sertão paraibano, com suas vastas planícies e o horizonte típico dessa região semiárida. As pessoas costumam subir até o Cristo, seja a pé ou de carro, para tirar fotos e admirar a vista. É um ponto de encontro popular tanto para os moradores locais quanto para os turistas que visitam Cajazeiras.",
                 endereco: "Alto do Cristo, Cajazeiras",
                 horario: "24 horas",
-                lat: -6.885000,
-                lng: -38.570000,
+                lat: -6.8948183,
+                lng: -38.5514726,
                 categoria: "História",
                 imagens: [
                     "https://blogger.googleusercontent.com/img/a/AVvXsEhnb_QHPlLvUbjZ5g0FE0o-vZABx5HB4NjEBmOiqqy-amlJCx_eRMTIGqI-toJmuCJWKXxbosLpWXs0T32BGrtPOsri1kQhWEW2_eDVkVno2fgD6AM_JSqxRWFCwCFSWZeQMx3zJ5BoJv3VRnsea2zyUWsXQrxRQufpxKKVwqeuBP4JluXyR5ffib2Ua_Dl=s16000",
@@ -692,67 +666,12 @@
             }
         });
 
-        // Controle do Carrossel Hero
-        let currentSlide = 0;
-        let slideInterval;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const indicators = document.querySelectorAll('.carousel-indicator');
-        const totalSlides = slides.length;
 
-        function showSlide(index) {
-            // Remover classe active de todos os slides e indicadores
-            slides.forEach(slide => {
-                slide.classList.remove('active');
-                slide.style.opacity = '0';
-            });
-            indicators.forEach(indicator => {
-                indicator.classList.remove('active');
-                indicator.style.opacity = '0.5';
-            });
-
-            // Mostrar slide atual
-            slides[index].classList.add('active');
-            slides[index].style.opacity = '1';
-            indicators[index].classList.add('active');
-            indicators[index].style.opacity = '1';
-            
-            currentSlide = index;
-        }
-
-        function nextSlide() {
-            const next = (currentSlide + 1) % totalSlides;
-            showSlide(next);
-        }
-
-        function previousSlide() {
-            const prev = (currentSlide - 1 + totalSlides) % totalSlides;
-            showSlide(prev);
-        }
-
-        function goToSlide(index) {
-            showSlide(index);
-            // Reiniciar o timer automático
-            clearInterval(slideInterval);
-            startAutoSlide();
-        }
-
-        function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 5000); // Muda a cada 5 segundos
-        }
-
-        function stopAutoSlide() {
-            clearInterval(slideInterval);
-        }
-
-        // Pausar carrossel quando mouse estiver sobre a seção hero
-        document.querySelector('#heroCarousel').addEventListener('mouseenter', stopAutoSlide);
-        document.querySelector('#heroCarousel').addEventListener('mouseleave', startAutoSlide);
 
         // Inicializar a página
         document.addEventListener('DOMContentLoaded', () => {
             renderizarPontos();
-            startAutoSlide(); // Iniciar carrossel automático
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9832ee51a13ccad7',t:'MTc1ODU1NTk0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98330da9854cc802',t:'MTc1ODU1NzIyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
