@@ -3,158 +3,639 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel de Gerenciamento</title>
+    <title>Turismo Local - Descubra sua Cidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .gradient-bg {
-            background: 
-                linear-gradient(135deg, rgba(10, 10, 10, 0.7) 0%, rgba(26, 26, 26, 0.7) 50%, rgba(10, 10, 10, 0.7) 100%),
-                url('https://i0.wp.com/blog.portaleducacao.com.br/wp-content/uploads/2022/02/365-O-que-e%CC%81-tecnologia_.jpg?fit=1200%2C675&ssl=1');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .card-hover {
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-        }
-        .card-hover::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700, #ffed4e);
-            border-radius: 18px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .card-hover:hover::before {
-            opacity: 1;
-            animation: neonPulse 2s infinite;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.2);
-        }
-        @keyframes neonPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        .btn-gradient {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            transition: all 0.3s ease;
-        }
-        .btn-gradient:hover {
-            background: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
-            transform: scale(1.02);
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .news-style { border-left: 4px solid #c53030; }
     </style>
 </head>
-<body class="gradient-bg min-h-screen flex items-center justify-center p-4">
-    <div class="bg-black rounded-3xl shadow-2xl p-6 w-full max-w-sm border-2 border-yellow-500" style="box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);">
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-2xl font-bold text-yellow-400 mb-2">Gerenciamento</h1>
-            <div class="w-16 h-1 bg-gradient-to-r from-yellow-400 to-yellow-600 mx-auto rounded-full" style="box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);"></div>
-            <p class="text-yellow-200 mt-2 text-sm">Painel Central de Controle</p>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-2xl font-bold text-red-600">TurismoLocal</h1>
+                    <span class="text-gray-500 text-sm">Descubra sua cidade</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#pontos" class="text-gray-700 hover:text-red-600 font-medium">Pontos Turísticos</a>
+                    <a href="#rotas" class="text-gray-700 hover:text-red-600 font-medium">Rotas</a>
+                    <a href="#eventos" class="text-gray-700 hover:text-red-600 font-medium">Eventos</a>
+                    <a href="#contato" class="text-gray-700 hover:text-red-600 font-medium">Contato</a>
+                </nav>
+                <button class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <!-- Carrossel de Imagens de Fundo -->
+        <div id="heroCarousel" class="absolute inset-0 w-full h-full">
+            <div class="carousel-slide active absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLs-AfL-EMjAZwaLUTN8hJCqC3SRD0JQngIPtmSF9jEZMMvbh-o1naIOQjpY7MlJyBnzOtcmIDXSDoqETo_hR8P2wYgst3dst65HuPnBb8hkUPtFh5TZ9mcpZ5Vp859f0M3w5s=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noda1DmqndHXZpC6PaSDgNHtYt4WA3Yk1ySMOncQDKI_2M4zoXmsRMBl0IvlksEjtRGEmcXR3bQlYE-9MT_Aac6F51MMLbiqIuuaHrfzpvYWCxO0GE4ovl75TNL1JLOjsQ63eU=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrh6TqryY_FeJtdjRjFoL7EX9z3O-55A_xuwFOuvdCcgeiSjLWg_0n7EVMDQEA_uDns1xlw8F3EPcmmXhDPfuqYWECGf591udV1OO2oiBlp-KkG4F-8rKVaimGDTnUmWJ1LFHI=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOsSlng3kIpwAbljit_dqEwq1WE9HaBxpA9MssH57rlXHkYhNEb_4f7eqImcuMCN9M7MfiSkkkdAchHrzgiphCicrsV1qApW0U2bEMg-U9KUp7BwdIVi0p8drZT7cr5srSASzp9w=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5vet8uMsRgP3qu74PRJKUdQLX16m9qykX7AtoPicArAvTjxGSRSJRnYG2izE3CbjtmiqalGtMg35_veCxhLR9zgYZRTP_2wLsEfSagWuejhJnNkmPIzmRRGLe-KuXRvuXp9E=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqa0U5sLeo2c_VJTDvyiJppyV6yRqm5SPXWkHll72GgmTmRVRgzLk4WJ6Ro6-1zOo_A6ylVALgsqVNQonwJDlWinbBwUxftmx9A2HY4RFGYTG9TsCI_IzkPR1xpo4M7Dpa7neU=s680-w680-h510-rw');"></div>
         </div>
 
-        <!-- Buttons Grid -->
-        <div class="flex flex-col gap-3">
-            <!-- Lista de Quartos -->
-            <a href="https://zerotofamesites.github.io/lavanderia-/" target="_blank" rel="noopener noreferrer" 
-               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
-                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold">Lista de Quartos</span>
+        <!-- Conteúdo do Hero -->
+        <div class="relative z-10 text-white py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="bg-black bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 mx-auto max-w-4xl">
+                    <h2 class="text-5xl font-bold mb-6 drop-shadow-lg">Explore os Tesouros de Cajazeiras</h2>
+                    <p class="text-xl mb-8 max-w-3xl mx-auto drop-shadow-md">Descubra o Açude Grande e outros pontos turísticos incríveis, rotas personalizadas e experiências únicas no coração do sertão paraibano.</p>
+                    <button onclick="scrollToSection('pontos')" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+                        Começar Exploração
+                    </button>
                 </div>
-                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-
-            <!-- Lista de Espera -->
-            <a href="https://zerotofamesites.github.io/espera/" target="_blank" rel="noopener noreferrer" 
-               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
-                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold">Lista de Espera</span>
-                </div>
-                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-
-            <!-- Informações -->
-            <a href="https://zerotofamesites.github.io/hotelconfort/" target="_blank" rel="noopener noreferrer" 
-               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
-                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold">Informações</span>
-                </div>
-                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-
-            <!-- Cardápio -->
-            <a href="https://zerotofamesites.github.io/cardapioinv-/" target="_blank" rel="noopener noreferrer" 
-               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
-                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold">Cardápio</span>
-                </div>
-                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
-
-            <!-- Cardápio Antigo -->
-            <a href="https://cardapiorestauranteinvo.my.canva.site/dagjjpgif8w#menu" target="_blank" rel="noopener noreferrer" 
-               class="card-hover bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-4 text-yellow-400 flex items-center justify-between hover:shadow-lg">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-yellow-500 bg-opacity-20 rounded-xl flex items-center justify-center mr-3">
-                        <svg class="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                        </svg>
-                    </div>
-                    <span class="text-base font-semibold">Cardápio Antigo</span>
-                </div>
-                <svg class="w-5 h-5 text-yellow-400 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
+            </div>
         </div>
 
-        <!-- Footer -->
-        <div class="text-center mt-6">
-            <p class="text-yellow-600 text-xs">Sistema de Gerenciamento Hoteleiro</p>
+        <!-- Indicadores do Carrossel -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="flex space-x-2">
+                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white opacity-100 transition-opacity duration-300" onclick="goToSlide(0)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(1)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(2)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(3)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(4)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(5)"></button>
+            </div>
+        </div>
+
+        <!-- Controles de Navegação -->
+        <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </section>
+
+    <!-- Pontos Turísticos -->
+    <section id="pontos" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Pontos Turísticos</h3>
+                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-600">Conheça os locais mais fascinantes da região</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="pontosContainer">
+                <!-- Os pontos turísticos serão inseridos aqui pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Notícias/Eventos -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8">
+                <h3 class="text-3xl font-bold text-gray-900">Últimas Notícias do Turismo</h3>
+                <div class="ml-4 flex-1 h-px bg-red-600"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500"></div>
+                    <div class="p-6">
+                        <div class="news-style pl-4 mb-4">
+                            <span class="text-red-600 text-sm font-semibold">TURISMO</span>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Nova rota turística inaugurada</h4>
+                        <p class="text-gray-600 mb-4">Descubra o novo circuito que conecta os principais pontos históricos da cidade.</p>
+                        <span class="text-sm text-gray-500">Há 2 horas</span>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500"></div>
+                    <div class="p-6">
+                        <div class="news-style pl-4 mb-4">
+                            <span class="text-red-600 text-sm font-semibold">EVENTOS</span>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Festival de Cultura Local</h4>
+                        <p class="text-gray-600 mb-4">Programação especial com apresentações culturais nos principais pontos turísticos.</p>
+                        <span class="text-sm text-gray-500">Há 5 horas</span>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
+                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-red-500"></div>
+                    <div class="p-6">
+                        <div class="news-style pl-4 mb-4">
+                            <span class="text-red-600 text-sm font-semibold">GASTRONOMIA</span>
+                        </div>
+                        <h4 class="text-xl font-semibold mb-2">Novos restaurantes na região</h4>
+                        <p class="text-gray-600 mb-4">Conheça as opções gastronômicas que abriram próximo aos pontos turísticos.</p>
+                        <span class="text-sm text-gray-500">Há 1 dia</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para Detalhes do Ponto Turístico -->
+    <div id="modalPonto" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 id="modalTitulo" class="text-3xl font-bold text-gray-900"></h3>
+                    <button onclick="fecharModal()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <div id="modalImagem" class="h-64 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg mb-4"></div>
+                        <p id="modalDescricao" class="text-gray-700 mb-6"></p>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span id="modalEndereco"></span>
+                            </div>
+                            <div class="flex items-center text-gray-600">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span id="modalHorario"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div id="mapa" class="h-64 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
+                            <span class="text-gray-500">Mapa será carregado aqui</span>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <button id="btnIniciarRota" class="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition duration-300 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"></path>
+                                </svg>
+                                Iniciar Rota no Google Maps
+                            </button>
+                            
+                            <button onclick="compartilharPonto()" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                                </svg>
+                                Compartilhar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98319aacb201f61b',t:'MTc1ODU0MjAzMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">TurismoLocal</h4>
+                    <p class="text-gray-400">Conectando você aos melhores destinos da sua região.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Links Úteis</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Pontos Turísticos</a></li>
+                        <li><a href="#" class="hover:text-white">Rotas</a></li>
+                        <li><a href="#" class="hover:text-white">Eventos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Contato</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📧 contato@turismolocal.com</li>
+                        <li>📱 (11) 99999-9999</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold mb-4">Redes Sociais</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 TurismoLocal. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dados dos pontos turísticos (você pode substituir pelas coordenadas da sua cidade)
+        const pontosTuristicos = [
+            {
+                id: 1,
+                nome: "Açude Grande",
+                descricao: "Local onde as pessoas costumam caminhar ao redor do Açude Grande, em Cajazeiras, é um dos pontos mais populares para lazer e atividades físicas na cidade. Com uma vista incrível do açude e sua vegetação ao redor, o espaço se tornou um lugar de convivência para moradores e visitantes. A área é ideal para caminhadas, corridas e passeios ao ar livre, principalmente durante o final da tarde, quando o clima fica mais ameno. O local também oferece um ambiente tranquilo, propício para relaxar e apreciar a natureza, sendo uma alternativa de bem-estar em meio ao calor do sertão.",
+                endereco: "Açude Grande, Zona Rural",
+                horario: "24 horas",
+                lat: -6.887922,
+                lng: -38.567235,
+                categoria: "Natureza",
+                imagens: [
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLs-AfL-EMjAZwaLUTN8hJCqC3SRD0JQngIPtmSF9jEZMMvbh-o1naIOQjpY7MlJyBnzOtcmIDXSDoqETo_hR8P2wYgst3dst65HuPnBb8hkUPtFh5TZ9mcpZ5Vp859f0M3w5s=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noda1DmqndHXZpC6PaSDgNHtYt4WA3Yk1ySMOncQDKI_2M4zoXmsRMBl0IvlksEjtRGEmcXR3bQlYE-9MT_Aac6F51MMLbiqIuuaHrfzpvYWCxO0GE4ovl75TNL1JLOjsQ63eU=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrh6TqryY_FeJtdjRjFoL7EX9z3O-55A_xuwFOuvdCcgeiSjLWg_0n7EVMDQEA_uDns1xlw8F3EPcmmXhDPfuqYWECGf591udV1OO2oiBlp-KkG4F-8rKVaimGDTnUmWJ1LFHI=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOsSlng3kIpwAbljit_dqEwq1WE9HaBxpA9MssH57rlXHkYhNEb_4f7eqImcuMCN9M7MfiSkkkdAchHrzgiphCicrsV1qApW0U2bEMg-U9KUp7BwdIVi0p8drZT7cr5srSASzp9w=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5vet8uMsRgP3qu74PRJKUdQLX16m9qykX7AtoPicArAvTjxGSRSJRnYG2izE3CbjtmiqalGtMg35_veCxhLR9zgYZRTP_2wLsEfSagWuejhJnNkmPIzmRRGLe-KuXRvuXp9E=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqa0U5sLeo2c_VJTDvyiJppyV6yRqm5SPXWkHll72GgmTmRVRgzLk4WJ6Ro6-1zOo_A6ylVALgsqVNQonwJDlWinbBwUxftmx9A2HY4RFGYTG9TsCI_IzkPR1xpo4M7Dpa7neU=s680-w680-h510-rw"
+                ]
+            },
+            {
+                id: 2,
+                nome: "Cristo Redentor",
+                descricao: "O local oferece uma vista panorâmica deslumbrante da cidade e das paisagens do Sertão paraibano, com suas vastas planícies e o horizonte típico dessa região semiárida. As pessoas costumam subir até o Cristo, seja a pé ou de carro, para tirar fotos e admirar a vista. É um ponto de encontro popular tanto para os moradores locais quanto para os turistas que visitam Cajazeiras.",
+                endereco: "Alto do Cristo, Cajazeiras",
+                horario: "24 horas",
+                lat: -6.885000,
+                lng: -38.570000,
+                categoria: "História",
+                imagens: [
+                    "https://blogger.googleusercontent.com/img/a/AVvXsEhnb_QHPlLvUbjZ5g0FE0o-vZABx5HB4NjEBmOiqqy-amlJCx_eRMTIGqI-toJmuCJWKXxbosLpWXs0T32BGrtPOsri1kQhWEW2_eDVkVno2fgD6AM_JSqxRWFCwCFSWZeQMx3zJ5BoJv3VRnsea2zyUWsXQrxRQufpxKKVwqeuBP4JluXyR5ffib2Ua_Dl=s16000",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnJQVqwJIaD32tYRDqOMLh7ne--XJNIzbqLw_ToVPXqoIMXwhbeLnyiOM5W8wBpXDudVnxJYj7UOYXBByAoVrqgJUWsCCR0iSsIBu6VrO1qxL6XOUpLPUmIXmlOBvNOKtYprRM5A=s680-w680-h510-rw",
+                    "https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6apVCE34Pe2s-_0-4v_1S9Z5XFbWk-Il4Cs52dyY2syI8_Yd00P9xjB5NNpbZ2YEEOWZh_Pq4a2gyewYQwje7RmMM-WQ-Qsb53z0lb5Snx02o_Z419qOwfRQ18WyRnS6RqzY=s680-w680-h510-rw"
+                ]
+            },
+            {
+                id: 3,
+                nome: "Parque Municipal",
+                descricao: "Amplo parque com trilhas ecológicas, lago artificial e área de lazer para toda a família. Ideal para piqueniques e atividades ao ar livre.",
+                endereco: "Av. das Flores, 1000",
+                horario: "06:00 às 18:00",
+                lat: -6.885000,
+                lng: -38.570000,
+                categoria: "Natureza"
+            },
+            {
+                id: 4,
+                nome: "Museu da Cidade",
+                descricao: "Museu que conta a história local através de exposições interativas e acervo histórico. Uma viagem no tempo pela cultura regional.",
+                endereco: "Rua da Cultura, 250",
+                horario: "09:00 às 17:00 (Ter-Dom)",
+                lat: -6.890000,
+                lng: -38.565000,
+                categoria: "Cultura"
+            },
+            {
+                id: 5,
+                nome: "Mirante da Serra",
+                descricao: "Vista panorâmica espetacular da cidade e região. Especialmente belo durante o pôr do sol. Acesso por trilha de dificuldade moderada.",
+                endereco: "Estrada da Serra, Km 5",
+                horario: "06:00 às 19:00",
+                lat: -6.880000,
+                lng: -38.560000,
+                categoria: "Natureza"
+            },
+            {
+                id: 6,
+                nome: "Igreja Matriz",
+                descricao: "Bela igreja do século XVIII com arquitetura barroca e arte sacra. Marco religioso e histórico da cidade.",
+                endereco: "Praça da Matriz, s/n",
+                horario: "06:00 às 18:00",
+                lat: -6.888000,
+                lng: -38.568000,
+                categoria: "História"
+            },
+            {
+                id: 7,
+                nome: "Mercado Municipal",
+                descricao: "Tradicional mercado com produtos locais, artesanato e gastronomia típica. Experiência autêntica da cultura local.",
+                endereco: "Rua do Comércio, 150",
+                horario: "07:00 às 17:00",
+                lat: -6.889000,
+                lng: -38.569000,
+                categoria: "Gastronomia"
+            }
+        ];
+
+        let pontoAtual = null;
+
+        // Função para renderizar os pontos turísticos
+        function renderizarPontos() {
+            const container = document.getElementById('pontosContainer');
+            container.innerHTML = '';
+
+            pontosTuristicos.forEach(ponto => {
+                const cores = {
+                    'História': 'from-amber-400 to-orange-500',
+                    'Natureza': 'from-green-400 to-emerald-500',
+                    'Cultura': 'from-purple-400 to-pink-500',
+                    'Gastronomia': 'from-red-400 to-rose-500'
+                };
+
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover cursor-pointer';
+                card.onclick = () => abrirModal(ponto);
+                
+                // Criar imagem do card
+                const imagemCard = ponto.imagens && ponto.imagens.length > 0 
+                    ? `<img src="${ponto.imagens[0]}" alt="${ponto.nome}" class="w-full h-48 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                    : '';
+                
+                const imagemFallback = `<div class="h-48 bg-gradient-to-r ${cores[ponto.categoria]} ${ponto.imagens && ponto.imagens.length > 0 ? 'hidden' : 'flex'} items-center justify-center">
+                    <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                </div>`;
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden">
+                        ${imagemCard}
+                        ${imagemFallback}
+                        ${ponto.imagens && ponto.imagens.length > 1 ? `
+                        <div class="absolute top-2 right-2 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded-full">
+                            +${ponto.imagens.length - 1} fotos
+                        </div>` : ''}
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">${ponto.categoria}</span>
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-semibold text-gray-900 mb-2">${ponto.nome}</h4>
+                        <p class="text-gray-600 mb-4 line-clamp-3">${ponto.descricao.substring(0, 120)}...</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            ${ponto.horario}
+                        </div>
+                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition duration-300">
+                            Ver Detalhes e Rota
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        let imagemAtualIndex = 0;
+
+        // Função para abrir o modal com detalhes do ponto
+        function abrirModal(ponto) {
+            pontoAtual = ponto;
+            imagemAtualIndex = 0;
+            
+            document.getElementById('modalTitulo').textContent = ponto.nome;
+            document.getElementById('modalDescricao').textContent = ponto.descricao;
+            document.getElementById('modalEndereco').textContent = ponto.endereco;
+            document.getElementById('modalHorario').textContent = ponto.horario;
+            
+            // Configurar galeria de imagens
+            const modalImagem = document.getElementById('modalImagem');
+            if (ponto.imagens && ponto.imagens.length > 0) {
+                modalImagem.innerHTML = `
+                    <div class="relative w-full h-64 rounded-lg overflow-hidden">
+                        <img id="imagemPrincipal" src="${ponto.imagens[0]}" alt="${ponto.nome}" 
+                             class="w-full h-full object-cover" 
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="w-full h-full bg-gradient-to-r from-blue-400 to-purple-500 hidden items-center justify-center">
+                            <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        ${ponto.imagens.length > 1 ? `
+                        <button onclick="navegarImagem(-1)" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        <button onclick="navegarImagem(1)" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
+                            ${imagemAtualIndex + 1} / ${ponto.imagens.length}
+                        </div>` : ''}
+                    </div>
+                    ${ponto.imagens.length > 1 ? `
+                    <div class="flex space-x-2 mt-3 overflow-x-auto pb-2">
+                        ${ponto.imagens.map((img, index) => `
+                            <img src="${img}" alt="${ponto.nome} ${index + 1}" 
+                                 class="w-16 h-12 object-cover rounded cursor-pointer border-2 ${index === 0 ? 'border-blue-500' : 'border-gray-200'} hover:border-blue-400 transition flex-shrink-0"
+                                 onclick="selecionarImagem(${index})"
+                                 onerror="this.style.display='none';">
+                        `).join('')}
+                    </div>` : ''}
+                `;
+            } else {
+                modalImagem.innerHTML = `
+                    <div class="h-64 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
+                        <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                `;
+            }
+            
+            // Simular carregamento do mapa
+            const mapa = document.getElementById('mapa');
+            mapa.innerHTML = `
+                <div class="w-full h-full bg-green-100 rounded-lg flex flex-col items-center justify-center">
+                    <svg class="w-12 h-12 text-green-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <p class="text-green-800 font-medium">${ponto.nome}</p>
+                    <p class="text-green-600 text-sm">Lat: ${ponto.lat}, Lng: ${ponto.lng}</p>
+                </div>
+            `;
+            
+            // Configurar botão de rota
+            const btnRota = document.getElementById('btnIniciarRota');
+            btnRota.onclick = () => iniciarRota(ponto);
+            
+            document.getElementById('modalPonto').classList.remove('hidden');
+        }
+
+        // Função para navegar entre imagens
+        function navegarImagem(direcao) {
+            if (!pontoAtual || !pontoAtual.imagens || pontoAtual.imagens.length <= 1) return;
+            
+            imagemAtualIndex += direcao;
+            if (imagemAtualIndex < 0) imagemAtualIndex = pontoAtual.imagens.length - 1;
+            if (imagemAtualIndex >= pontoAtual.imagens.length) imagemAtualIndex = 0;
+            
+            const imagemPrincipal = document.getElementById('imagemPrincipal');
+            if (imagemPrincipal) {
+                imagemPrincipal.src = pontoAtual.imagens[imagemAtualIndex];
+            }
+            
+            // Atualizar contador
+            const contador = document.querySelector('.absolute.bottom-2');
+            if (contador) {
+                contador.textContent = `${imagemAtualIndex + 1} / ${pontoAtual.imagens.length}`;
+            }
+            
+            // Atualizar thumbnails
+            const thumbnails = document.querySelectorAll('.w-16.h-12');
+            thumbnails.forEach((thumb, index) => {
+                thumb.className = thumb.className.replace(/border-(blue-500|gray-200)/, 
+                    index === imagemAtualIndex ? 'border-blue-500' : 'border-gray-200');
+            });
+        }
+
+        // Função para selecionar imagem específica
+        function selecionarImagem(index) {
+            imagemAtualIndex = index;
+            navegarImagem(0); // Atualiza a imagem sem mudar o índice
+        }
+
+        // Função para fechar o modal
+        function fecharModal() {
+            document.getElementById('modalPonto').classList.add('hidden');
+            pontoAtual = null;
+        }
+
+        // Função para iniciar rota no Google Maps
+        function iniciarRota(ponto) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const origem = `${position.coords.latitude},${position.coords.longitude}`;
+                        const destino = `${ponto.lat},${ponto.lng}`;
+                        const url = `https://www.google.com/maps/dir/${origem}/${destino}`;
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    },
+                    (error) => {
+                        // Se não conseguir a localização atual, abre apenas o destino
+                        const url = `https://www.google.com/maps/search/?api=1&query=${ponto.lat},${ponto.lng}`;
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                    }
+                );
+            } else {
+                // Fallback se geolocalização não estiver disponível
+                const url = `https://www.google.com/maps/search/?api=1&query=${ponto.lat},${ponto.lng}`;
+                window.open(url, '_blank', 'noopener,noreferrer');
+            }
+        }
+
+        // Função para compartilhar ponto
+        function compartilharPonto() {
+            if (pontoAtual && navigator.share) {
+                navigator.share({
+                    title: pontoAtual.nome,
+                    text: pontoAtual.descricao,
+                    url: window.location.href
+                });
+            } else if (pontoAtual) {
+                // Fallback para navegadores que não suportam Web Share API
+                const texto = `Confira este ponto turístico: ${pontoAtual.nome} - ${pontoAtual.descricao}`;
+                navigator.clipboard.writeText(texto).then(() => {
+                    alert('Informações copiadas para a área de transferência!');
+                });
+            }
+        }
+
+        // Função para scroll suave
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Fechar modal ao clicar fora
+        document.getElementById('modalPonto').addEventListener('click', (e) => {
+            if (e.target.id === 'modalPonto') {
+                fecharModal();
+            }
+        });
+
+        // Controle do Carrossel Hero
+        let currentSlide = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remover classe active de todos os slides e indicadores
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+            });
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+                indicator.style.opacity = '0.5';
+            });
+
+            // Mostrar slide atual
+            slides[index].classList.add('active');
+            slides[index].style.opacity = '1';
+            indicators[index].classList.add('active');
+            indicators[index].style.opacity = '1';
+            
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            const next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
+        }
+
+        function previousSlide() {
+            const prev = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(prev);
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            // Reiniciar o timer automático
+            clearInterval(slideInterval);
+            startAutoSlide();
+        }
+
+        function startAutoSlide() {
+            slideInterval = setInterval(nextSlide, 4000); // Muda a cada 4 segundos
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // Pausar carrossel quando mouse estiver sobre a seção hero
+        document.querySelector('#heroCarousel').addEventListener('mouseenter', stopAutoSlide);
+        document.querySelector('#heroCarousel').addEventListener('mouseleave', startAutoSlide);
+
+        // Inicializar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarPontos();
+            startAutoSlide(); // Iniciar carrossel automático
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9832c3ceb49d2755',t:'MTc1ODU1NDIwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
