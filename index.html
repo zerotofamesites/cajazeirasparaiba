@@ -3,33 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Turismo Local - Descubra sua Cidade</title>
+    <title>TurismoLocal - Explore Cajazeiras</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .news-style { border-left: 4px solid #c53030; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .card-modern {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tech-border {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+            to { box-shadow: 0 0 30px rgba(102, 126, 234, 0.6); }
+        }
+        
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(102, 126, 234, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .modal-modern {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-modern {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+        
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .category-badge {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .news-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-lg sticky top-0 z-50">
+<body>
+    <!-- Header Moderno -->
+    <header class="glass-effect sticky top-0 z-50 tech-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-4">
-                    <h1 class="text-2xl font-bold text-red-600">TurismoLocal</h1>
-                    <span class="text-gray-500 text-sm">Descubra sua cidade</span>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center pulse-glow">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold gradient-text">TurismoLocal</h1>
+                            <span class="text-xs text-gray-500 font-medium">Explore • Descubra • Conecte</span>
+                        </div>
+                    </div>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#pontos" class="text-gray-700 hover:text-red-600 font-medium">Pontos Turísticos</a>
-                    <a href="#rotas" class="text-gray-700 hover:text-red-600 font-medium">Rotas</a>
-                    <a href="#eventos" class="text-gray-700 hover:text-red-600 font-medium">Eventos</a>
-                    <a href="#contato" class="text-gray-700 hover:text-red-600 font-medium">Contato</a>
+                    <a href="#pontos" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                        Pontos Turísticos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#rotas" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                        Rotas Inteligentes
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#eventos" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                        Eventos
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                    <a href="#contato" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                        Contato
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
                 </nav>
-                <button class="md:hidden text-gray-700">
+                <button class="md:hidden text-gray-700 p-2 rounded-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -38,63 +175,117 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden">
+    <!-- Hero Section Moderno -->
+    <section class="relative overflow-hidden min-h-screen flex items-center tech-grid">
         <!-- Carrossel de Imagens de Fundo -->
         <div id="heroCarousel" class="absolute inset-0 w-full h-full">
-            <div class="carousel-slide active absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLs-AfL-EMjAZwaLUTN8hJCqC3SRD0JQngIPtmSF9jEZMMvbh-o1naIOQjpY7MlJyBnzOtcmIDXSDoqETo_hR8P2wYgst3dst65HuPnBb8hkUPtFh5TZ9mcpZ5Vp859f0M3w5s=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noda1DmqndHXZpC6PaSDgNHtYt4WA3Yk1ySMOncQDKI_2M4zoXmsRMBl0IvlksEjtRGEmcXR3bQlYE-9MT_Aac6F51MMLbiqIuuaHrfzpvYWCxO0GE4ovl75TNL1JLOjsQ63eU=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrh6TqryY_FeJtdjRjFoL7EX9z3O-55A_xuwFOuvdCcgeiSjLWg_0n7EVMDQEA_uDns1xlw8F3EPcmmXhDPfuqYWECGf591udV1OO2oiBlp-KkG4F-8rKVaimGDTnUmWJ1LFHI=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noOsSlng3kIpwAbljit_dqEwq1WE9HaBxpA9MssH57rlXHkYhNEb_4f7eqImcuMCN9M7MfiSkkkdAchHrzgiphCicrsV1qApW0U2bEMg-U9KUp7BwdIVi0p8drZT7cr5srSASzp9w=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr5vet8uMsRgP3qu74PRJKUdQLX16m9qykX7AtoPicArAvTjxGSRSJRnYG2izE3CbjtmiqalGtMg35_veCxhLR9zgYZRTP_2wLsEfSagWuejhJnNkmPIzmRRGLe-KuXRvuXp9E=s680-w680-h510-rw');"></div>
-            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0" style="background-image: linear-gradient(rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqa0U5sLeo2c_VJTDvyiJppyV6yRqm5SPXWkHll72GgmTmRVRgzLk4WJ6Ro6-1zOo_A6ylVALgsqVNQonwJDlWinbBwUxftmx9A2HY4RFGYTG9TsCI_IzkPR1xpo4M7Dpa7neU=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide active absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrLs-AfL-EMjAZwaLUTN8hJCqC3SRD0JQngIPtmSF9jEZMMvbh-o1naIOQjpY7MlJyBnzOtcmIDXSDoqETo_hR8P2wYgst3dst65HuPnBb8hkUPtFh5TZ9mcpZ5Vp859f0M3w5s=s680-w680-h510-rw');"></div>
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-1000 opacity-0" style="background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4noda1DmqndHXZpC6PaSDgNHtYt4WA3Yk1ySMOncQDKI_2M4zoXmsRMBl0IvlksEjtRGEmcXR3bQlYE-9MT_Aac6F51MMLbiqIuuaHrfzpvYWCxO0GE4ovl75TNL1JLOjsQ63eU=s680-w680-h510-rw');"></div>
         </div>
 
         <!-- Conteúdo do Hero -->
-        <div class="relative z-10 text-white py-32">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="bg-black bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 mx-auto max-w-4xl">
-                    <h2 class="text-5xl font-bold mb-6 drop-shadow-lg">Explore os Tesouros de Cajazeiras</h2>
-                    <p class="text-xl mb-8 max-w-3xl mx-auto drop-shadow-md">Descubra o Açude Grande e outros pontos turísticos incríveis, rotas personalizadas e experiências únicas no coração do sertão paraibano.</p>
-                    <button onclick="scrollToSection('pontos')" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-                        Começar Exploração
-                    </button>
+        <div class="relative z-10 text-white w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="floating">
+                        <div class="glass-effect rounded-3xl p-8 lg:p-12">
+                            <div class="flex items-center space-x-3 mb-6">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span class="text-sm font-medium text-green-300">Sistema Online</span>
+                            </div>
+                            <h2 class="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+                                Explore os
+                                <span class="gradient-text bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                                    Tesouros
+                                </span>
+                                <br>de Cajazeiras
+                            </h2>
+                            <p class="text-xl mb-8 text-blue-100 leading-relaxed">
+                                Descubra experiências únicas com nossa plataforma inteligente de turismo local. 
+                                Rotas personalizadas, pontos históricos e muito mais.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button onclick="scrollToSection('pontos')" class="btn-modern text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg">
+                                    <span class="relative z-10 flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                        Explorar Agora
+                                    </span>
+                                </button>
+                                <button class="glass-effect text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white hover:bg-opacity-20 transition-all duration-300">
+                                    <span class="flex items-center justify-center">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        Tour Virtual
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden lg:block">
+                        <div class="glass-effect rounded-3xl p-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white bg-opacity-10 rounded-2xl p-4 text-center">
+                                    <div class="text-3xl font-bold">2+</div>
+                                    <div class="text-sm text-blue-200">Pontos Turísticos</div>
+                                </div>
+                                <div class="bg-white bg-opacity-10 rounded-2xl p-4 text-center">
+                                    <div class="text-3xl font-bold">24/7</div>
+                                    <div class="text-sm text-blue-200">Acesso Online</div>
+                                </div>
+                                <div class="bg-white bg-opacity-10 rounded-2xl p-4 text-center">
+                                    <div class="text-3xl font-bold">GPS</div>
+                                    <div class="text-sm text-blue-200">Navegação</div>
+                                </div>
+                                <div class="bg-white bg-opacity-10 rounded-2xl p-4 text-center">
+                                    <div class="text-3xl font-bold">HD</div>
+                                    <div class="text-sm text-blue-200">Galeria</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Indicadores do Carrossel -->
+        <!-- Indicadores Modernos -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-            <div class="flex space-x-2">
-                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white opacity-100 transition-opacity duration-300" onclick="goToSlide(0)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(1)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(2)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(3)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(4)"></button>
-                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-opacity duration-300" onclick="goToSlide(5)"></button>
+            <div class="flex space-x-3">
+                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(0)"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white opacity-50 transition-all duration-300 hover:scale-125" onclick="goToSlide(1)"></button>
             </div>
         </div>
 
-        <!-- Controles de Navegação -->
-        <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm">
+        <!-- Controles Modernos -->
+        <button onclick="previousSlide()" class="absolute left-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-white hover:bg-opacity-20 text-white p-4 rounded-2xl transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
         </button>
-        <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black bg-opacity-30 hover:bg-opacity-50 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm">
+        <button onclick="nextSlide()" class="absolute right-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-white hover:bg-opacity-20 text-white p-4 rounded-2xl transition-all duration-300">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
         </button>
     </section>
 
-    <!-- Pontos Turísticos -->
-    <section id="pontos" class="py-16 bg-white">
+    <!-- Pontos Turísticos Modernos -->
+    <section id="pontos" class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h3 class="text-4xl font-bold text-gray-900 mb-4">Pontos Turísticos</h3>
-                <div class="w-24 h-1 bg-red-600 mx-auto mb-6"></div>
-                <p class="text-xl text-gray-600">Conheça os locais mais fascinantes da região</p>
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full px-6 py-2 mb-6">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <span class="text-sm font-medium text-blue-700">Destinos Inteligentes</span>
+                </div>
+                <h3 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                    Pontos <span class="gradient-text">Turísticos</span>
+                </h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore locais fascinantes com tecnologia de ponta e experiências imersivas
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="pontosContainer">
@@ -103,154 +294,147 @@
         </div>
     </section>
 
-    <!-- Seção de Notícias/Eventos -->
-    <section class="py-16 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center mb-8">
-                <h3 class="text-3xl font-bold text-gray-900">Últimas Notícias do Turismo</h3>
-                <div class="ml-4 flex-1 h-px bg-red-600"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500"></div>
-                    <div class="p-6">
-                        <div class="news-style pl-4 mb-4">
-                            <span class="text-red-600 text-sm font-semibold">TURISMO</span>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2">Nova rota turística inaugurada</h4>
-                        <p class="text-gray-600 mb-4">Descubra o novo circuito que conecta os principais pontos históricos da cidade.</p>
-                        <span class="text-sm text-gray-500">Há 2 horas</span>
-                    </div>
-                </article>
 
-                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500"></div>
-                    <div class="p-6">
-                        <div class="news-style pl-4 mb-4">
-                            <span class="text-red-600 text-sm font-semibold">EVENTOS</span>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2">Festival de Cultura Local</h4>
-                        <p class="text-gray-600 mb-4">Programação especial com apresentações culturais nos principais pontos turísticos.</p>
-                        <span class="text-sm text-gray-500">Há 5 horas</span>
-                    </div>
-                </article>
 
-                <article class="bg-white rounded-lg shadow-md overflow-hidden card-hover">
-                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-red-500"></div>
-                    <div class="p-6">
-                        <div class="news-style pl-4 mb-4">
-                            <span class="text-red-600 text-sm font-semibold">GASTRONOMIA</span>
+    <!-- Modal Moderno -->
+    <div id="modalPonto" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="modal-modern rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <h3 id="modalTitulo" class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2"></h3>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-gray-500">Localização Ativa</span>
                         </div>
-                        <h4 class="text-xl font-semibold mb-2">Novos restaurantes na região</h4>
-                        <p class="text-gray-600 mb-4">Conheça as opções gastronômicas que abriram próximo aos pontos turísticos.</p>
-                        <span class="text-sm text-gray-500">Há 1 dia</span>
                     </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal para Detalhes do Ponto Turístico -->
-    <div id="modalPonto" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-6">
-                    <h3 id="modalTitulo" class="text-3xl font-bold text-gray-900"></h3>
-                    <button onclick="fecharModal()" class="text-gray-500 hover:text-gray-700">
+                    <button onclick="fecharModal()" class="glass-effect text-gray-500 hover:text-gray-700 p-3 rounded-2xl transition-all duration-300 hover:bg-white hover:bg-opacity-20">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                        <div id="modalImagem" class="h-64 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg mb-4"></div>
-                        <p id="modalDescricao" class="text-gray-700 mb-6"></p>
-                        
-                        <div class="space-y-3">
-                            <div class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <div class="space-y-8">
+                    <!-- Imagem Principal -->
+                    <div id="modalImagem" class="w-full bg-gradient-to-r from-blue-400 to-purple-500 rounded-3xl overflow-hidden" style="aspect-ratio: 1/1; max-height: 500px;"></div>
+                    
+                    <!-- Descrição -->
+                    <div class="glass-effect p-8 rounded-3xl">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Sobre este local
+                        </h4>
+                        <p id="modalDescricao" class="text-gray-700 leading-relaxed text-lg"></p>
+                    </div>
+                    
+                    <!-- Informações e Ações -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="glass-effect p-6 rounded-3xl">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
-                                <span id="modalEndereco"></span>
+                                Informações
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="flex items-center text-gray-600 p-3 bg-white bg-opacity-50 rounded-2xl">
+                                    <svg class="w-5 h-5 mr-3 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    </svg>
+                                    <span id="modalEndereco" class="font-medium"></span>
+                                </div>
+                                <div class="flex items-center text-gray-600 p-3 bg-white bg-opacity-50 rounded-2xl">
+                                    <svg class="w-5 h-5 mr-3 flex-shrink-0 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <span id="modalHorario" class="font-medium"></span>
+                                </div>
                             </div>
-                            <div class="flex items-center text-gray-600">
-                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </div>
+                        
+                        <div class="glass-effect p-6 rounded-3xl">
+                            <h4 class="text-lg font-semibold text-gray-900 mb-6 flex items-center">
+                                <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"></path>
                                 </svg>
-                                <span id="modalHorario"></span>
+                                Navegação GPS
+                            </h4>
+                            <div id="mapa" class="h-48 bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl mb-6 overflow-hidden">
+                                <iframe id="googleMapsFrame" 
+                                        width="100%" 
+                                        height="100%" 
+                                        style="border:0; border-radius: 1rem;" 
+                                        loading="lazy" 
+                                        allowfullscreen 
+                                        referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
                             </div>
                         </div>
                     </div>
                     
-                    <div>
-                        <div id="mapa" class="h-64 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                            <span class="text-gray-500">Mapa será carregado aqui</span>
-                        </div>
-                        
-                        <div class="space-y-3">
-                            <button id="btnIniciarRota" class="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition duration-300 flex items-center justify-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Botões de Ação Modernos -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <button id="btnIniciarRota" class="btn-modern text-white py-4 px-8 rounded-2xl font-semibold text-lg shadow-lg">
+                            <span class="relative z-10 flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"></path>
                                 </svg>
-                                Iniciar Rota no Google Maps
-                            </button>
-                            
-                            <button onclick="compartilharPonto()" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition duration-300 flex items-center justify-center">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                Iniciar Navegação
+                            </span>
+                        </button>
+                        
+                        <button onclick="compartilharPonto()" class="glass-effect text-gray-700 py-4 px-8 rounded-2xl font-semibold text-lg hover:bg-white hover:bg-opacity-30 transition-all duration-300">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
                                 </svg>
                                 Compartilhar
-                            </button>
-                        </div>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Footer Moderno -->
+    <footer class="bg-gray-900 text-white py-16 relative overflow-hidden">
+        <div class="absolute inset-0 tech-grid opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div>
-                    <h4 class="text-xl font-bold mb-4">TurismoLocal</h4>
-                    <p class="text-gray-400">Conectando você aos melhores destinos da sua região.</p>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-4">Links Úteis</h5>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Pontos Turísticos</a></li>
-                        <li><a href="#" class="hover:text-white">Rotas</a></li>
-                        <li><a href="#" class="hover:text-white">Eventos</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-4">Contato</h5>
-                    <ul class="space-y-2 text-gray-400">
-                        <li>📧 contato@turismolocal.com</li>
-                        <li>📱 (11) 99999-9999</li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-semibold mb-4">Redes Sociais</h5>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white">Facebook</a>
-                        <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold">TurismoLocal</h4>
                     </div>
+                    <p class="text-gray-400 leading-relaxed">Conectando você aos melhores destinos com tecnologia de ponta e experiências únicas.</p>
                 </div>
+                <div>
+                    <h5 class="font-semibold mb-6 text-lg">Navegação</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#pontos" class="hover:text-white transition-colors duration-300 flex items-center">
+                            <span class="w-1 h-1 bg-blue-500 rounded-full mr-3"></span>
+                            Pontos Turísticos
+                        </a></li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2024 TurismoLocal. Todos os direitos reservados.</p>
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2024 TurismoLocal. Todos os direitos reservados. Desenvolvido com ❤️ para Cajazeiras.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Dados dos pontos turísticos (você pode substituir pelas coordenadas da sua cidade)
+        // Dados dos pontos turísticos - apenas os dois que você adicionou
         const pontosTuristicos = [
             {
                 id: 1,
@@ -284,56 +468,6 @@
                     "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npnJQVqwJIaD32tYRDqOMLh7ne--XJNIzbqLw_ToVPXqoIMXwhbeLnyiOM5W8wBpXDudVnxJYj7UOYXBByAoVrqgJUWsCCR0iSsIBu6VrO1qxL6XOUpLPUmIXmlOBvNOKtYprRM5A=s680-w680-h510-rw",
                     "https://lh3.googleusercontent.com/gps-cs-s/AC9h4no6apVCE34Pe2s-_0-4v_1S9Z5XFbWk-Il4Cs52dyY2syI8_Yd00P9xjB5NNpbZ2YEEOWZh_Pq4a2gyewYQwje7RmMM-WQ-Qsb53z0lb5Snx02o_Z419qOwfRQ18WyRnS6RqzY=s680-w680-h510-rw"
                 ]
-            },
-            {
-                id: 3,
-                nome: "Parque Municipal",
-                descricao: "Amplo parque com trilhas ecológicas, lago artificial e área de lazer para toda a família. Ideal para piqueniques e atividades ao ar livre.",
-                endereco: "Av. das Flores, 1000",
-                horario: "06:00 às 18:00",
-                lat: -6.885000,
-                lng: -38.570000,
-                categoria: "Natureza"
-            },
-            {
-                id: 4,
-                nome: "Museu da Cidade",
-                descricao: "Museu que conta a história local através de exposições interativas e acervo histórico. Uma viagem no tempo pela cultura regional.",
-                endereco: "Rua da Cultura, 250",
-                horario: "09:00 às 17:00 (Ter-Dom)",
-                lat: -6.890000,
-                lng: -38.565000,
-                categoria: "Cultura"
-            },
-            {
-                id: 5,
-                nome: "Mirante da Serra",
-                descricao: "Vista panorâmica espetacular da cidade e região. Especialmente belo durante o pôr do sol. Acesso por trilha de dificuldade moderada.",
-                endereco: "Estrada da Serra, Km 5",
-                horario: "06:00 às 19:00",
-                lat: -6.880000,
-                lng: -38.560000,
-                categoria: "Natureza"
-            },
-            {
-                id: 6,
-                nome: "Igreja Matriz",
-                descricao: "Bela igreja do século XVIII com arquitetura barroca e arte sacra. Marco religioso e histórico da cidade.",
-                endereco: "Praça da Matriz, s/n",
-                horario: "06:00 às 18:00",
-                lat: -6.888000,
-                lng: -38.568000,
-                categoria: "História"
-            },
-            {
-                id: 7,
-                nome: "Mercado Municipal",
-                descricao: "Tradicional mercado com produtos locais, artesanato e gastronomia típica. Experiência autêntica da cultura local.",
-                endereco: "Rua do Comércio, 150",
-                horario: "07:00 às 17:00",
-                lat: -6.889000,
-                lng: -38.569000,
-                categoria: "Gastronomia"
             }
         ];
 
@@ -352,18 +486,25 @@
                     'Gastronomia': 'from-red-400 to-rose-500'
                 };
 
+                const icones = {
+                    'História': 'M12 14l9-5-9-5-9 5 9 5z M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z',
+                    'Natureza': 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+                    'Cultura': 'M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2h3a1 1 0 110 2h-1v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6H4a1 1 0 010-2h3z',
+                    'Gastronomia': 'M12 2l3.09 6.26L22 9l-5 4.87L18.18 22 12 18.27 5.82 22 7 13.87 2 9l6.91-.74L12 2z'
+                };
+
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-lg shadow-md overflow-hidden card-hover cursor-pointer';
+                card.className = 'card-modern rounded-3xl overflow-hidden cursor-pointer group';
                 card.onclick = () => abrirModal(ponto);
                 
                 // Criar imagem do card
                 const imagemCard = ponto.imagens && ponto.imagens.length > 0 
-                    ? `<img src="${ponto.imagens[0]}" alt="${ponto.nome}" class="w-full h-48 object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
+                    ? `<img src="${ponto.imagens[0]}" alt="${ponto.nome}" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
                     : '';
                 
-                const imagemFallback = `<div class="h-48 bg-gradient-to-r ${cores[ponto.categoria]} ${ponto.imagens && ponto.imagens.length > 0 ? 'hidden' : 'flex'} items-center justify-center">
-                    <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                const imagemFallback = `<div class="h-64 bg-gradient-to-br ${cores[ponto.categoria]} ${ponto.imagens && ponto.imagens.length > 0 ? 'hidden' : 'flex'} items-center justify-center group-hover:scale-105 transition-transform duration-500">
+                    <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${icones[ponto.categoria]}"></path>
                     </svg>
                 </div>`;
 
@@ -371,29 +512,29 @@
                     <div class="relative overflow-hidden">
                         ${imagemCard}
                         ${imagemFallback}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
                         ${ponto.imagens && ponto.imagens.length > 1 ? `
-                        <div class="absolute top-2 right-2 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded-full">
+                        <div class="absolute top-4 right-4 category-badge text-white text-xs font-semibold px-3 py-1 rounded-full">
                             +${ponto.imagens.length - 1} fotos
                         </div>` : ''}
+                        <div class="absolute top-4 left-4 category-badge text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">
+                            ${ponto.categoria}
+                        </div>
                     </div>
                     <div class="p-6">
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">${ponto.categoria}</span>
-                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">${ponto.nome}</h4>
+                            <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                         </div>
-                        <h4 class="text-xl font-semibold text-gray-900 mb-2">${ponto.nome}</h4>
-                        <p class="text-gray-600 mb-4 line-clamp-3">${ponto.descricao.substring(0, 120)}...</p>
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <p class="text-gray-600 mb-6 text-sm leading-relaxed h-12 overflow-hidden">${ponto.descricao.substring(0, 120)}...</p>
+                        <div class="flex items-center text-sm text-gray-500 mb-6 glass-effect p-3 rounded-2xl">
+                            <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                             ${ponto.horario}
                         </div>
-                        <button class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-700 transition duration-300">
-                            Ver Detalhes e Rota
+                        <button class="w-full btn-modern text-white py-3 px-6 rounded-2xl font-semibold hover:shadow-lg transition-all duration-300">
+                            <span class="relative z-10">Explorar Local</span>
                         </button>
                     </div>
                 `;
@@ -403,11 +544,17 @@
         }
 
         let imagemAtualIndex = 0;
+        let imagemInterval;
 
         // Função para abrir o modal com detalhes do ponto
         function abrirModal(ponto) {
             pontoAtual = ponto;
             imagemAtualIndex = 0;
+            
+            // Parar qualquer intervalo anterior
+            if (imagemInterval) {
+                clearInterval(imagemInterval);
+            }
             
             document.getElementById('modalTitulo').textContent = ponto.nome;
             document.getElementById('modalDescricao').textContent = ponto.descricao;
@@ -418,62 +565,59 @@
             const modalImagem = document.getElementById('modalImagem');
             if (ponto.imagens && ponto.imagens.length > 0) {
                 modalImagem.innerHTML = `
-                    <div class="relative w-full h-64 rounded-lg overflow-hidden">
+                    <div class="relative w-full h-full rounded-3xl overflow-hidden">
                         <img id="imagemPrincipal" src="${ponto.imagens[0]}" alt="${ponto.nome}" 
-                             class="w-full h-full object-cover" 
+                             class="w-full h-full object-cover object-center transition-opacity duration-500" 
+                             style="aspect-ratio: 1/1;" 
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="w-full h-full bg-gradient-to-r from-blue-400 to-purple-500 hidden items-center justify-center">
-                            <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="w-full h-full bg-gradient-to-br from-blue-400 to-purple-500 hidden items-center justify-center" style="aspect-ratio: 1/1;">
+                            <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
                         ${ponto.imagens.length > 1 ? `
-                        <button onclick="navegarImagem(-1)" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                        <button onclick="navegarImagem(1)" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded-full">
-                            ${imagemAtualIndex + 1} / ${ponto.imagens.length}
+                        <div class="absolute bottom-4 right-4 glass-effect text-white text-sm px-3 py-1 rounded-full">
+                            1 / ${ponto.imagens.length}
                         </div>` : ''}
                     </div>
-                    ${ponto.imagens.length > 1 ? `
-                    <div class="flex space-x-2 mt-3 overflow-x-auto pb-2">
-                        ${ponto.imagens.map((img, index) => `
-                            <img src="${img}" alt="${ponto.nome} ${index + 1}" 
-                                 class="w-16 h-12 object-cover rounded cursor-pointer border-2 ${index === 0 ? 'border-blue-500' : 'border-gray-200'} hover:border-blue-400 transition flex-shrink-0"
-                                 onclick="selecionarImagem(${index})"
-                                 onerror="this.style.display='none';">
-                        `).join('')}
-                    </div>` : ''}
                 `;
+                
+                // Iniciar rotação automática das imagens se houver mais de uma
+                if (ponto.imagens.length > 1) {
+                    imagemInterval = setInterval(() => {
+                        imagemAtualIndex = (imagemAtualIndex + 1) % ponto.imagens.length;
+                        const imagemPrincipal = document.getElementById('imagemPrincipal');
+                        const contador = document.querySelector('.absolute.bottom-4.right-4');
+                        if (imagemPrincipal) {
+                            imagemPrincipal.style.opacity = '0';
+                            setTimeout(() => {
+                                imagemPrincipal.src = ponto.imagens[imagemAtualIndex];
+                                imagemPrincipal.style.opacity = '1';
+                                if (contador) {
+                                    contador.textContent = `${imagemAtualIndex + 1} / ${ponto.imagens.length}`;
+                                }
+                            }, 250);
+                        }
+                    }, 1500);
+                }
             } else {
                 modalImagem.innerHTML = `
-                    <div class="h-64 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center">
-                        <svg class="w-12 h-12 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="h-full bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl flex items-center justify-center">
+                        <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
                 `;
             }
             
-            // Simular carregamento do mapa
-            const mapa = document.getElementById('mapa');
-            mapa.innerHTML = `
-                <div class="w-full h-full bg-green-100 rounded-lg flex flex-col items-center justify-center">
-                    <svg class="w-12 h-12 text-green-600 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    <p class="text-green-800 font-medium">${ponto.nome}</p>
-                    <p class="text-green-600 text-sm">Lat: ${ponto.lat}, Lng: ${ponto.lng}</p>
-                </div>
-            `;
+            // Carregar Google Maps real com a localização do ponto
+            const googleMapsFrame = document.getElementById('googleMapsFrame');
+            const embedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dw901SwHHzFQL0&q=${ponto.lat},${ponto.lng}&zoom=15&maptype=satellite`;
+            
+            // Fallback para URL sem API key (funciona mas com limitações)
+            const fallbackUrl = `https://maps.google.com/maps?q=${ponto.lat},${ponto.lng}&t=k&z=15&output=embed`;
+            
+            googleMapsFrame.src = fallbackUrl;
             
             // Configurar botão de rota
             const btnRota = document.getElementById('btnIniciarRota');
@@ -482,41 +626,14 @@
             document.getElementById('modalPonto').classList.remove('hidden');
         }
 
-        // Função para navegar entre imagens
-        function navegarImagem(direcao) {
-            if (!pontoAtual || !pontoAtual.imagens || pontoAtual.imagens.length <= 1) return;
-            
-            imagemAtualIndex += direcao;
-            if (imagemAtualIndex < 0) imagemAtualIndex = pontoAtual.imagens.length - 1;
-            if (imagemAtualIndex >= pontoAtual.imagens.length) imagemAtualIndex = 0;
-            
-            const imagemPrincipal = document.getElementById('imagemPrincipal');
-            if (imagemPrincipal) {
-                imagemPrincipal.src = pontoAtual.imagens[imagemAtualIndex];
-            }
-            
-            // Atualizar contador
-            const contador = document.querySelector('.absolute.bottom-2');
-            if (contador) {
-                contador.textContent = `${imagemAtualIndex + 1} / ${pontoAtual.imagens.length}`;
-            }
-            
-            // Atualizar thumbnails
-            const thumbnails = document.querySelectorAll('.w-16.h-12');
-            thumbnails.forEach((thumb, index) => {
-                thumb.className = thumb.className.replace(/border-(blue-500|gray-200)/, 
-                    index === imagemAtualIndex ? 'border-blue-500' : 'border-gray-200');
-            });
-        }
-
-        // Função para selecionar imagem específica
-        function selecionarImagem(index) {
-            imagemAtualIndex = index;
-            navegarImagem(0); // Atualiza a imagem sem mudar o índice
-        }
-
         // Função para fechar o modal
         function fecharModal() {
+            // Parar rotação automática das imagens
+            if (imagemInterval) {
+                clearInterval(imagemInterval);
+                imagemInterval = null;
+            }
+            
             document.getElementById('modalPonto').classList.add('hidden');
             pontoAtual = null;
         }
@@ -620,7 +737,7 @@
         }
 
         function startAutoSlide() {
-            slideInterval = setInterval(nextSlide, 4000); // Muda a cada 4 segundos
+            slideInterval = setInterval(nextSlide, 5000); // Muda a cada 5 segundos
         }
 
         function stopAutoSlide() {
@@ -637,5 +754,5 @@
             startAutoSlide(); // Iniciar carrossel automático
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9832c3ceb49d2755',t:'MTc1ODU1NDIwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9832ee51a13ccad7',t:'MTc1ODU1NTk0Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
